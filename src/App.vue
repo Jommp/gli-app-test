@@ -1,28 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <SideNav class="d-none d-md-block" />
+    <div class="main-content">
+      <header>
+        <MainNav />
+      </header>
+      <main>
+        <router-view/>
+        <h1>Hola</h1>
+      </main>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import SideNav from './components/SideNav.vue'
+import MainNav from './components/MainNav.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    SideNav,
+    MainNav
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@media (min-width: 768px) {  
+  .main-content {
+    margin-left: 258px;
+  }
 }
 </style>
