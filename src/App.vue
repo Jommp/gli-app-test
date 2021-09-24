@@ -7,7 +7,6 @@
       </header>
       <main>
         <router-view/>
-        <h1>Hola</h1>
       </main>
     </div>
   </div>
@@ -26,9 +25,16 @@ export default {
 </script>
 
 <style>
+.admin {
+  color: #323232;
+}
 @media (min-width: 768px) {  
   .main-content {
     margin-left: 258px;
+  }
+  .admin {
+    padding-left: 33px;
+    padding-right: 64px;
   }
 }
 </style>

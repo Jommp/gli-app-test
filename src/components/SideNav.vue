@@ -15,16 +15,20 @@
     </div>
 
     <b-nav vertical>
-      <b-nav-item v-for="(link, index) in links" :key="index" class="text-left">
-        <img :src="require(`@/assets/images/${link.iconSrc}.png`)" :alt="'Icono de ' + link.name">
-        {{link.name}}
+      <b-nav-item v-for="(link, index) in links" :key="index" >
+        <router-link class="text-left" to="/" custom v-slot="{ navigate }">
+          <span @click="navigate" @keypress.enter="navigate" role="link">
+            <img :src="require(`@/assets/images/${link.iconSrc}.png`)" :alt="'Icono de ' + link.name">
+            {{link.name}}
+          </span>
+        </router-link>
       </b-nav-item>
     </b-nav>
 
     <template #footer>
       <div class="help-container mx-auto text-left">
         <p class="m-0">¿Necesitas ayuda?</p>
-        <a href="#">Ir a sección de ayuda</a>
+        <a href="">Ir a sección de ayuda</a>
         <img src="@/assets/images/external-link.png" alt="Icono de link externo">
       </div>
 
