@@ -24,15 +24,23 @@
       hover 
       :items="admins" 
       :fields="fields"
-      borderless
-      thead-class=""
       table-class="admins-table"
       responsive
-      fill>
+      fill
+      class="mb-0">
         <template #cell(check)="data"> 
-          <b-checkbox button-variant="dark" plain>
+          <b-checkbox variant="dark" plain>
             {{data.id}}
           </b-checkbox>
+        </template>
+        <template #cell(name)="data"> 
+          <div class="d-flex">
+            <b-avatar size="sm" class="mr-2"></b-avatar>
+            {{data.item.name}}
+          </div>
+        </template>
+        <template #cell(status)="data"> 
+          <span :class="[data.item.status === 'Activo' ? 'active-status' : 'inactive-status', 'status']">{{data.item.status}}</span>
         </template>
         <template #cell(id)="item"> 
           <button title="Editar">
@@ -49,10 +57,12 @@
             </router-link>
           </button>
         </template>
-        <template #foot>
-          Rows per page: 5
-        </template>
       </b-table>
+      <div class="footer-container d-flex  justify-content-between ml-auto">
+        <p>Rows per page : 5</p>
+        <p>1-10 of 100</p>
+        <p>&lt; &gt;</p>
+      </div>
     </div>
   </div>
 </template>
@@ -113,28 +123,33 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
         fields: [
           {
             key: 'check',
-            thStyle: { 'width': '60px'}
+            thStyle: { 'width': '60px'},
+            tdClass: 'custom-td'
           },
           {
             key: 'name',
             label: 'Administradores',
             thStyle: { 'width': '303px'},
+            tdClass: 'custom-td',
             sortable: true
           },
           {
             key: 'area',
             label: 'Área',
-            thStyle: { 'width': '165px'}
+            thStyle: { 'width': '165px'},
+            tdClass: 'custom-td'
           },
           {
             key: 'email',
             label: 'Correo',
-            thStyle: { 'width': '263px'}
+            thStyle: { 'width': '263px'},
+            tdClass: 'custom-td'
           },
           {
             key: 'status',
             label: 'Estatus',
-            thStyle: { 'width': '178px'}
+            thStyle: { 'width': '178px'},
+            tdClass: 'custom-td'
           },
           {
             key: 'id',
@@ -148,7 +163,7 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
   }
 </script>
 
-<style scoped>
+<style>
 
 .table-options {
   margin-bottom: 16px;
@@ -185,12 +200,34 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
   color: #FFFFFF;
   width: 163px;
 }
-.admins-table .table td {
-  padding: 16px !important;
+table .custom-td {
+  font-size: 14px !important;
+}
+.table .status {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px;
+}
+.table .active-status {
+  background: #E8F5E9;
+  color: #4CAF50;
+}
+.table .inactive-status {
+  background: #FFE1E0;
+  color: #EB5757;
 }
 .table .options-btn button{
   background-color: transparent;
   border: 0;
+}
+.footer-container {
+  font-size: 12px;
+  margin-top: 16px;
+  max-width: 350px;
+}
+.footer-container p {
+  font-weight: 400;
+  margin: 0;
 }
 
 @media (min-width: 768px) {  

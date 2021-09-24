@@ -25,10 +25,16 @@ export default {
 </script>
 
 <style>
+main {
+  padding: 0px 15px;
+}
 .admin {
   color: #323232;
 }
-@media (min-width: 768px) {  
+@media (min-width: 768px) {
+  main {
+    padding: 0px 0px;
+  }
   .main-content {
     margin-left: 258px;
   }
